@@ -14,7 +14,24 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": []
+    "commands": [],
+    "configuration": [
+      {
+        "title": "ConfettiCode",
+        "properties": {
+          "confetticode.enable": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable or disable ConfettiCode"
+          },
+          "confetticode.customCommandRegex": {
+            "type": "string",
+            "default": "",
+            "description": "Custom regex to match commands to celebrate (overriding default one)"
+          }
+        }
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

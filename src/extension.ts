@@ -1,41 +1,34 @@
 import * as vscode from "vscode";
+import { runConfettiTask } from "./tasks/runConfettiTask";
+import { getRegex } from "./settings/getRegex";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "confetticode" is now active!');
   vscode.window.onDidEndTerminalShellExecution((event) => {
-    console.log("Terminal shell execution ended");
+    // Check if the extension is enabled and exit if it's not
+    const isExtensionEnabled = vscode.workspace
+      .getConfiguration("confetticode")
+      .get("enable") as boolean;
+
+    if (!isExtensionEnabled) {
+      return;
+    }
+
+    // Get the command that was executed
     const command = event.execution.commandLine.value;
-    const regex = /^(yarn jest|yarn test)/;
+
+    // Get the regex from the configuration and use the default if it's not set
+    const regex = getRegex();
+
+    // Check if the command matches the regex and if the exit code is 0
     if (regex.test(command)) {
       const exitCode = event.exitCode;
-      console.log("Command matches regex", command);
+
       if (exitCode === 0) {
-        console.log("Command executed successfully");
-        const confettiTask = new vscode.Task(
-          { type: "shell" },
-          vscode.TaskScope.Workspace,
-          "Confetti Task",
-          "ConfettiCode",
-          new vscode.ShellExecution("open raycast://confetti")
-        );
-
-        confettiTask.presentationOptions = {
-          reveal: vscode.TaskRevealKind.Never,
-          panel: vscode.TaskPanelKind.Dedicated,
-          clear: true,
-          close: true,
-        };
-
-        vscode.tasks.executeTask(confettiTask).then();
+        // Fire the confetti 🎉
+        runConfettiTask();
       }
     }
   });
-
-  // const disposable = vscode.commands.registerCommand('confetticode.helloWorld', () => {
-  // 	vscode.window.showInformationMessage('Hello World from ConfettiCode!');
-  // });
-
-  // context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
