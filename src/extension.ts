@@ -1,4 +1,3 @@
-import { exec } from "child_process";
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -12,7 +11,22 @@ export function activate(context: vscode.ExtensionContext) {
       console.log("Command matches regex", command);
       if (exitCode === 0) {
         console.log("Command executed successfully");
-        exec("open raycast://confetti");
+        const confettiTask = new vscode.Task(
+          { type: "shell" },
+          vscode.TaskScope.Workspace,
+          "Confetti Task",
+          "ConfettiCode",
+          new vscode.ShellExecution("open raycast://confetti")
+        );
+
+        confettiTask.presentationOptions = {
+          reveal: vscode.TaskRevealKind.Never,
+          panel: vscode.TaskPanelKind.Dedicated,
+          clear: true,
+          close: true,
+        };
+
+        vscode.tasks.executeTask(confettiTask).then();
       }
     }
   });
