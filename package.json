@@ -2,7 +2,14 @@
   "name": "confetticode",
   "displayName": "ConfettiCode",
   "description": "Celebrate when your tests pass with some confetti!",
+  "icon": "assets/icon.png",
   "version": "0.0.1",
+  "license": "MIT",
+  "publisher": "nicodeck",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicodeck/confetticode.git"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },
