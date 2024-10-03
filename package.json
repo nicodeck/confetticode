@@ -3,7 +3,7 @@
   "displayName": "ConfettiCode",
   "description": "Celebrate when your tests pass with some confetti!",
   "icon": "assets/icon.png",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "MIT",
   "publisher": "nicodeck",
   "repository": {
@@ -36,7 +36,6 @@
         "command": "confetticode.addCustomCommandRegex",
         "title": "Add Custom Command Regex",
         "category": "ConfettiCode"
-        
       }
     ],
     "configuration": [
