@@ -21,7 +21,24 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [],
+    "commands": [
+      {
+        "command": "confetticode.enable",
+        "title": "Enable ConfettiCode",
+        "category": "ConfettiCode"
+      },
+      {
+        "command": "confetticode.disable",
+        "title": "Disable ConfettiCode",
+        "category": "ConfettiCode"
+      },
+      {
+        "command": "confetticode.addCustomCommandRegex",
+        "title": "Add Custom Command Regex",
+        "category": "ConfettiCode"
+        
+      }
+    ],
     "configuration": [
       {
         "title": "ConfettiCode",
